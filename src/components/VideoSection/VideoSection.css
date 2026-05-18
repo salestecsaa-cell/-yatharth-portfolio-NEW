@@ -1,0 +1,176 @@
+.video-section {
+  width: 100%;
+  padding: 100px 0;
+  background: linear-gradient(135deg, rgba(94, 234, 212, 0.05) 0%, rgba(94, 234, 212, 0) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.video-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accentColor), transparent);
+  opacity: 0.3;
+}
+
+.video-content {
+  margin: auto;
+  padding: 0 20px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.video-header {
+  text-align: center;
+  margin-bottom: 60px;
+  opacity: 0;
+  animation: slideInDown 0.8s ease-out 0.2s forwards;
+}
+
+.video-title {
+  font-size: 56px;
+  font-weight: 300;
+  color: var(--accentColor);
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.video-subtitle {
+  font-size: 18px;
+  color: #b0a8c0;
+  margin: 0;
+  font-weight: 300;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(94, 234, 212, 0.15);
+  background: #0a0e17;
+  border: 1px solid rgba(94, 234, 212, 0.1);
+  opacity: 0;
+  animation: fadeInScale 0.8s ease-out 0.4s forwards;
+}
+
+.video-iframe {
+  display: block;
+  width: 100%;
+  height: 600px;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* For visible state when in viewport */
+.video-section-visible .video-content {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.video-section-visible .video-header {
+  animation: slideInDown 0.8s ease-out 0.2s forwards;
+}
+
+.video-section-visible .video-wrapper {
+  animation: fadeInScale 0.8s ease-out 0.4s forwards;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 1200px) {
+  .video-title {
+    font-size: 48px;
+  }
+
+  .video-iframe {
+    height: 500px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .video-section {
+    padding: 80px 0;
+  }
+
+  .video-title {
+    font-size: 36px;
+    letter-spacing: 1px;
+  }
+
+  .video-subtitle {
+    font-size: 16px;
+  }
+
+  .video-wrapper {
+    margin: 0 auto;
+  }
+
+  .video-iframe {
+    height: 400px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .video-section {
+    padding: 60px 0;
+  }
+
+  .video-title {
+    font-size: 28px;
+  }
+
+  .video-subtitle {
+    font-size: 14px;
+  }
+
+  .video-content {
+    padding: 0 15px;
+  }
+
+  .video-wrapper {
+    margin: 0 auto;
+  }
+
+  .video-iframe {
+    height: 300px;
+  }
+}
