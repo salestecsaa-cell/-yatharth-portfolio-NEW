@@ -16,8 +16,6 @@ const Loading = ({ percent }: { percent: number }) => {
 
   const [clicked, setClicked] = useState(false);
 
-  // ── force re-mount of .loading-percent so @keyframes percentFlip
-  //    reruns on every tick (CSS animation only fires on mount/remount)
   const [flipKey, setFlipKey] = useState(0);
 
   useEffect(() => {
@@ -116,6 +114,14 @@ const Loading = ({ percent }: { percent: number }) => {
 
       </div>
 
+      {/* ── BIG % COUNTER bottom-left ── */}
+      <div className={`loading-counter ${clicked && "loading-counter--out"}`}>
+        <span key={flipKey} className="loading-counter__number">
+          {percent}
+        </span>
+        <span className="loading-counter__symbol">%</span>
+      </div>
+
       <div className="loading-screen">
 
         <div className="loading-marquee">
@@ -142,7 +148,7 @@ const Loading = ({ percent }: { percent: number }) => {
 
           <div className={`loading-button ${loaded && "loading-complete"}`}>
 
-            {/* ── animated progress bar ── */}
+            {/* ── thin progress bar at button bottom ── */}
             <div
               className="loading-progress-bar"
               style={{ width: `${percent}%` }}
@@ -154,13 +160,9 @@ const Loading = ({ percent }: { percent: number }) => {
 
                 <div className="loading-content-in">
 
-                  {/* "Loading" label */}
                   <span className="loading-text">Loading</span>
 
-                  {/* animated % counter — key prop forces re-mount = re-runs @keyframes */}
-                  <span key={flipKey} className="loading-percent">
-                    {percent}%
-                  </span>
+                  <span className="loading-percent">{percent}%</span>
 
                 </div>
 
