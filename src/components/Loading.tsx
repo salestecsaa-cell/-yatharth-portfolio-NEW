@@ -16,6 +16,14 @@ const Loading = ({ percent }: { percent: number }) => {
 
   const [clicked, setClicked] = useState(false);
 
+  // ── force re-mount of .loading-percent so @keyframes percentFlip
+  //    reruns on every tick (CSS animation only fires on mount/remount)
+  const [flipKey, setFlipKey] = useState(0);
+
+  useEffect(() => {
+    setFlipKey((k) => k + 1);
+  }, [percent]);
+
   if (percent >= 100) {
 
     setTimeout(() => {
@@ -26,9 +34,9 @@ const Loading = ({ percent }: { percent: number }) => {
 
         setIsLoaded(true);
 
-      }, 300); // REDUCED: 1000ms → 300ms
+      }, 300);
 
-    }, 300); // REDUCED: 600ms → 300ms
+    }, 300);
 
   }
 
@@ -50,7 +58,7 @@ const Loading = ({ percent }: { percent: number }) => {
 
           setIsLoading(false);
 
-        }, 400); // REDUCED: 900ms → 400ms
+        }, 400);
 
       }
 
@@ -134,15 +142,25 @@ const Loading = ({ percent }: { percent: number }) => {
 
           <div className={`loading-button ${loaded && "loading-complete"}`}>
 
+            {/* ── animated progress bar ── */}
+            <div
+              className="loading-progress-bar"
+              style={{ width: `${percent}%` }}
+            />
+
             <div className="loading-container">
 
               <div className="loading-content">
 
                 <div className="loading-content-in">
 
+                  {/* "Loading" label */}
                   <span className="loading-text">Loading</span>
 
-                  <span className="loading-percent">{percent}%</span>
+                  {/* animated % counter — key prop forces re-mount = re-runs @keyframes */}
+                  <span key={flipKey} className="loading-percent">
+                    {percent}%
+                  </span>
 
                 </div>
 
@@ -180,7 +198,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
 
     if (percent <= 50) {
 
-      let rand = Math.round(Math.random() * 8); // INCREASED: 5 → 8 for faster progress
+      let rand = Math.round(Math.random() * 8);
 
       percent = percent + rand;
 
@@ -192,7 +210,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
 
       interval = setInterval(() => {
 
-        percent = percent + Math.round(Math.random() * 2); // INCREASED: 1 → 2 for faster progress
+        percent = percent + Math.round(Math.random() * 2);
 
         setLoading(percent);
 
@@ -202,11 +220,11 @@ export const setProgress = (setLoading: (value: number) => void) => {
 
         }
 
-      }, 800); // REDUCED: 2000ms → 800ms
+      }, 800);
 
     }
 
-  }, 50); // REDUCED: 100ms → 50ms for faster updates
+  }, 50);
 
   function clear() {
 
@@ -238,7 +256,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
 
         }
 
-      }, 1); // REDUCED: 2ms → 1ms for instant completion
+      }, 1);
 
     });
 
