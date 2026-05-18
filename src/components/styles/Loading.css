@@ -53,12 +53,25 @@
   border-radius: 100px;
   background-color: #000;
   overflow: hidden;
-  transition: 0.5s ease-in-out;
-  transition-delay: 0.1s;
   box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* hidden while counting — revealed at 100% */
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.85);
+  transition: opacity 0.4s ease, transform 0.4s ease,
+              min-width 0.5s ease-in-out, min-height 0.5s ease-in-out,
+              border-radius 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+/* pill appears when 100% reached */
+.loading-wrap.loading-complete-wrap {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
 }
 
 .loading-clicked {
@@ -202,32 +215,33 @@
 }
 
 /* ════════════════════════════════════════
-   BIG % COUNTER — fixed bottom-left
+   BIG % COUNTER — fixed center of screen
    ════════════════════════════════════════ */
 .loading-counter {
   position: fixed;
-  bottom: 32px;
-  left: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 9999999999;
   display: flex;
   align-items: flex-end;
+  justify-content: center;
   line-height: 1;
   pointer-events: none;
-  /* fade out when loading-clicked */
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.33, 0.11, 1, 0.72);
 }
 
 .loading-counter--out {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translate(-50%, -40%);
 }
 
 /* the rolling number */
 .loading-counter__number {
-  font-size: clamp(72px, 14vw, 160px);
+  font-size: clamp(80px, 18vw, 200px);
   font-weight: 800;
   color: #000;
-  letter-spacing: -4px;
+  letter-spacing: -6px;
   font-variant-numeric: tabular-nums;
   display: block;
   line-height: 0.9;
@@ -239,8 +253,8 @@
 @keyframes counterRoll {
   from {
     opacity: 0;
-    transform: translateY(18px);
-    filter: blur(4px);
+    transform: translateY(20px);
+    filter: blur(6px);
   }
   to {
     opacity: 1;
@@ -249,21 +263,21 @@
   }
 }
 
-/* the % symbol — smaller, teal, sits top-right of the number */
+/* the % symbol — smaller, teal, sits bottom-right of the number */
 .loading-counter__symbol {
-  font-size: clamp(24px, 4vw, 48px);
+  font-size: clamp(28px, 5vw, 60px);
   font-weight: 700;
   color: #2dd4bf;
-  margin-bottom: 10px;
-  margin-left: 4px;
+  margin-bottom: 14px;
+  margin-left: 6px;
   letter-spacing: 0;
 }
 
 /* ── media: smaller on mobile ── */
 @media only screen and (max-width: 500px) {
-  .loading-counter {
-    bottom: 24px;
-    left: 24px;
+  .loading-counter__number {
+    font-size: clamp(72px, 22vw, 120px);
+    letter-spacing: -4px;
   }
 }
 /* ════════════════════════════════════════ */
