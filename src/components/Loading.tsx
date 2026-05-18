@@ -115,7 +115,7 @@ const Loading = ({ percent }: { percent: number }) => {
       </div>
 
       {/* ── BIG % COUNTER bottom-left ── */}
-      <div className={`loading-counter ${clicked && "loading-counter--out"}`}>
+      <div className={`loading-counter ${loaded && "loading-counter--out"}`}>
         <span key={flipKey} className="loading-counter__number">
           {percent}
         </span>
@@ -138,7 +138,7 @@ const Loading = ({ percent }: { percent: number }) => {
 
         <div
 
-          className={`loading-wrap ${clicked && "loading-clicked"}`}
+          className={`loading-wrap ${loaded && "loading-complete-wrap"} ${clicked && "loading-clicked"}`}
 
           onMouseMove={(e) => handleMouseMove(e)}
 
