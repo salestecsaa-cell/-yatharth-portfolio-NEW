@@ -114,14 +114,6 @@ const Loading = ({ percent }: { percent: number }) => {
 
       </div>
 
-      {/* ── BIG % COUNTER bottom-left ── */}
-      <div className={`loading-counter ${loaded && "loading-counter--out"}`}>
-        <span key={flipKey} className="loading-counter__number">
-          {percent}
-        </span>
-        <span className="loading-counter__symbol">%</span>
-      </div>
-
       <div className="loading-screen">
 
         <div className="loading-marquee">
@@ -136,46 +128,34 @@ const Loading = ({ percent }: { percent: number }) => {
 
         </div>
 
+        {/* ── PILL — always visible in center ── */}
         <div
-
-          className={`loading-wrap ${loaded && "loading-complete-wrap"} ${clicked && "loading-clicked"}`}
-
+          className={`loading-wrap ${clicked && "loading-clicked"}`}
           onMouseMove={(e) => handleMouseMove(e)}
-
         >
 
           <div className="loading-hover"></div>
 
-          <div className={`loading-button ${loaded && "loading-complete"}`}>
+          <div className="loading-button">
 
-            {/* ── thin progress bar at button bottom ── */}
+            {/* thin teal progress bar at bottom of pill */}
             <div
               className="loading-progress-bar"
-              style={{ width: `${percent}%` }}
+              style={{ width: `${Math.min(percent, 100)}%` }}
             />
 
-            <div className="loading-container">
-
-              <div className="loading-content">
-
-                <div className="loading-content-in">
-
-                  <span className="loading-text">Loading</span>
-
-                  <span className="loading-percent">{percent}%</span>
-
-                </div>
-
-              </div>
-
-              <div className="loading-box"></div>
-
+            {/* ── PERCENT shown while loading ── */}
+            <div className={`pill-percent-view ${loaded && "pill-percent-view--out"}`}>
+              <span key={flipKey} className="pill-percent-number">
+                {percent}
+              </span>
+              <span className="pill-percent-symbol">%</span>
             </div>
 
-            <div className="loading-content2">
-
-              <span>Yatharth Sharma</span>
-
+            {/* ── NAME shown after 100% ── */}
+            <div className={`pill-name-view ${loaded && "pill-name-view--in"}`}>
+              <span>YATHARTH</span>
+              <span>SHARMA</span>
             </div>
 
           </div>
