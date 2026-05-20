@@ -6,6 +6,8 @@ import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
+import { smoother } from "./Navbar";
+import { hideCharacter } from "./utils/hideCharacter";
 
 const SocialIcons = () => {
   useEffect(() => {
@@ -53,6 +55,21 @@ const SocialIcons = () => {
       };
     });
   }, []);
+
+  const handlePortfolioClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    // Hide the 3D character immediately
+    hideCharacter();
+    // Use GSAP ScrollSmoother if available (desktop), else fallback
+    if (window.innerWidth > 1024 && smoother) {
+      smoother.scrollTo("#work", true, "top top");
+    } else {
+      const workSection = document.getElementById("work");
+      if (workSection) {
+        workSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <div className="icons-section">
@@ -124,13 +141,7 @@ const SocialIcons = () => {
       <a
         className="resume-button"
         href="#work"
-        onClick={(e) => {
-          e.preventDefault();
-          const workSection = document.getElementById("work");
-          if (workSection) {
-            workSection.scrollIntoView({ behavior: "smooth" });
-          }
-        }}
+        onClick={handlePortfolioClick}
       >
         <HoverLinks text="PORTFOLIO" />
         <span>
