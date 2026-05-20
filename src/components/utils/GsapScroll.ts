@@ -36,6 +36,17 @@ export function setCharTimeline(
       invalidateOnRefresh: true,
     },
   });
+
+  // Hide character completely when Work section is reached
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: ".work-section",
+      start: "top 80%",
+      end: "top 20%",
+      scrub: true,
+      invalidateOnRefresh: true,
+    },
+  }).to(".character-model", { opacity: 0, pointerEvents: "none", duration: 1 }, 0);
   let screenLight: any, monitor: any;
   character?.children.forEach((object: any) => {
     if (object.name === "Plane004") {
