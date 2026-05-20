@@ -46,11 +46,11 @@ const MainContainer = ({ children }: PropsWithChildren) => {
               <VideoSection />
             </Suspense>
 
-            <Work />
-
             <Suspense fallback={<div>Loading....</div>}>
               <TechStack />
             </Suspense>
+
+            <Work />
 
             <Contact />
           </div>
