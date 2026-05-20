@@ -51,7 +51,7 @@ const SocialIcons = () => {
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
-          
+          <a
             href="https://www.upwork.com/freelancers/~011f837a11249f47be"
             target="_blank"
             rel="noreferrer"
@@ -66,7 +66,7 @@ const SocialIcons = () => {
           </a>
         </span>
         <span>
-          
+          <a
             href="https://wa.me/918770794512"
             target="_blank"
             rel="noreferrer"
@@ -81,7 +81,7 @@ const SocialIcons = () => {
           </a>
         </span>
       </div>
-      
+      <a
         className="resume-button"
         href="https://wa.me/918770794512"
         target="_blank"
