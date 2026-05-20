@@ -3,11 +3,8 @@ import {
 } from "react-icons/fa6";
 import { SiUpwork } from "react-icons/si";
 import "./styles/SocialIcons.css";
-import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
-import { smoother } from "./Navbar";
-import { hideCharacter } from "./utils/hideCharacter";
 
 const SocialIcons = () => {
   useEffect(() => {
@@ -56,26 +53,11 @@ const SocialIcons = () => {
     });
   }, []);
 
-  const handlePortfolioClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    // Hide the 3D character immediately
-    hideCharacter();
-    // Use GSAP ScrollSmoother if available (desktop), else fallback
-    if (window.innerWidth > 1024 && smoother) {
-      smoother.scrollTo("#work", true, "top top");
-    } else {
-      const workSection = document.getElementById("work");
-      if (workSection) {
-        workSection.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
-
   return (
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
-          <a
+          
             href="https://www.upwork.com/freelancers/~011f837a11249f47be"
             target="_blank"
             rel="noreferrer"
@@ -85,12 +67,11 @@ const SocialIcons = () => {
           </a>
         </span>
         <span>
-          <a
+          
             href="tel:+918770794512"
             rel="noreferrer"
             title="Call"
           >
-            {/* Phone Icon - Stroke */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -106,7 +87,7 @@ const SocialIcons = () => {
           </a>
         </span>
         <span>
-          <a
+          
             href="https://wa.me/918770794512"
             target="_blank"
             rel="noreferrer"
@@ -116,12 +97,11 @@ const SocialIcons = () => {
           </a>
         </span>
         <span>
-          <a
+          
             href="mailto:yatharth114@gmail.com"
             rel="noreferrer"
             title="Email"
           >
-            {/* Envelope Icon - Stroke */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -138,15 +118,14 @@ const SocialIcons = () => {
           </a>
         </span>
       </div>
-      <a
+      
         className="resume-button"
-        href="#work"
-        onClick={handlePortfolioClick}
+        href="https://wa.me/918770794512"
+        target="_blank"
+        rel="noreferrer"
       >
-        <HoverLinks text="PORTFOLIO" />
-        <span>
-          <TbNotes />
-        </span>
+        <FaWhatsapp style={{ fontSize: "1.2em" }} />
+        <HoverLinks text="WHATSAPP" />
       </a>
     </div>
   );
