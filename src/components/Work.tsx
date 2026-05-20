@@ -6,11 +6,11 @@ const sections = [
     title: "",
     items: [
       {
-        title: "CallHQ",
-        category: "Voice AI Calling Platform",
-        tools: "Voice AI, Calling Automation, CRM Integrations",
-        image: "/images/callhq.webp",
-        link: "https://drive.google.com/drive/folders/1IXUwLXBPtW-EFOHlSGsX0gtDbCD9BR4I",
+        title: "Video Editing",
+        category: "Video Editing Portfolio",
+        tools: "Video Editing, Motion Graphics, Color Grading",
+        image: "/images/videoediting.webp",
+        link: "https://videoediting.yatharth114.com",
       },
     ],
   },
@@ -18,11 +18,11 @@ const sections = [
     title: "",
     items: [
       {
-        title: "Whatsapp Automation",
-        category: "WABA Application",
-        tools: "WhatsApp Business API, Workflow Automation, Notifications",
-        image: "/images/whatsapp.webp",
-        link: "https://drive.google.com/drive/folders/1IbOc9RgFdmxmFTveTRv8z5sbJk8kaQ1p",
+        title: "Graphic Design",
+        category: "Graphic Design Portfolio",
+        tools: "Brand Identity, Social Media, Print Design",
+        image: "/images/graphicdesign.webp",
+        link: "https://graphicdesign.yatharth114.com",
       },
     ],
   },
