@@ -28,6 +28,14 @@ const sections = [
   },
 ];
 
+const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+  e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
+  e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
+};
+
 const Work = () => {
   return (
     <div className="work-section" id="work">
@@ -43,7 +51,11 @@ const Work = () => {
 
               <div className="items-container">
                 {section.items.map((item, itemIndex) => (
-                  <div key={itemIndex} className="work-item">
+                  <div
+                    key={itemIndex}
+                    className="work-item"
+                    onMouseMove={handleMouseMove}
+                  >
                     <div className="item-image">
                       <WorkImage
                         image={item.image}
