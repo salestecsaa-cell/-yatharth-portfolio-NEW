@@ -59,6 +59,31 @@
   flex-direction: column;
   gap: 20px;
   transition: all 0.3s ease;
+  position: relative;
+  isolation: isolate;
+}
+
+/* ── Mouse-tracking Glow Behind Card ── */
+.work-item::before {
+  content: '';
+  position: absolute;
+  inset: -35px;
+  background: radial-gradient(
+    ellipse 70% 70% at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 230, 210, 0.45) 0%,
+    rgba(80, 50, 255, 0.28) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+  filter: blur(22px);
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+.work-item:hover::before {
+  opacity: 1;
 }
 
 .work-item:hover {
@@ -73,6 +98,11 @@
   border-radius: 8px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.5s ease;
+}
+
+.work-item:hover .item-image {
+  box-shadow: 0 0 0 1.5px rgba(0, 210, 195, 0.35);
 }
 
 .item-image .work-image {
