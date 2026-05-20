@@ -4,6 +4,7 @@ import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
+import { hideCharacter } from "./utils/hideCharacter";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 export let smoother: ScrollSmoother;
@@ -31,6 +32,10 @@ const Navbar = () => {
           e.preventDefault();
           let elem = e.currentTarget as HTMLAnchorElement;
           let section = elem.getAttribute("data-href");
+          // Hide character when navigating to work section
+          if (section === "#work") {
+            hideCharacter();
+          }
           smoother.scrollTo(section, true, "top top");
         }
       });
