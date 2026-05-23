@@ -10,9 +10,12 @@ interface ParaElement extends HTMLElement {
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 
+// FIX: Extract as named function so we can properly removeEventListener
+// Arrow function inline => new reference each time => removeEventListener never works
 export default function setSplitText() {
   ScrollTrigger.config({ ignoreMobileResize: true });
   if (window.innerWidth < 900) return;
+
   const paras: NodeListOf<ParaElement> = document.querySelectorAll(".para");
   const titles: NodeListOf<ParaElement> = document.querySelectorAll(".title");
 
@@ -48,6 +51,7 @@ export default function setSplitText() {
       }
     );
   });
+
   titles.forEach((title: ParaElement) => {
     if (title.anim) {
       title.anim.progress(1).kill();
@@ -76,5 +80,9 @@ export default function setSplitText() {
     );
   });
 
-  ScrollTrigger.addEventListener("refresh", () => setSplitText());
+  // FIX: Remove old listener first before adding new one
+  // Without this: every refresh call added a NEW listener
+  // 1st refresh = 1 setSplitText call, 2nd = 2 calls, 3rd = 4 calls... exponential lag
+  ScrollTrigger.removeEventListener("refresh", setSplitText);
+  ScrollTrigger.addEventListener("refresh", setSplitText);
 }
