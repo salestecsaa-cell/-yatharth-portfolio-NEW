@@ -1,6 +1,11 @@
 import { SplitText } from "gsap/SplitText";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { smoother } from "../Navbar";
+
+// FIX: Store loop timelines at module level so we can pause/restart them on scroll-back
+let loopTimeline1: gsap.core.Timeline | null = null;
+let loopTimeline2: gsap.core.Timeline | null = null;
 
 export function initialFX() {
   document.body.style.overflowY = "auto";
@@ -76,11 +81,42 @@ export function initialFX() {
   var landingText4 = new SplitText(".landing-h2-1", TextProps);
   var landingText5 = new SplitText(".landing-h2-2", TextProps);
 
-  LoopText(landingText2, landingText3);
-  LoopText(landingText4, landingText5);
+  // FIX: Store returned timelines so we can control them on scroll-back
+  loopTimeline1 = LoopText(landingText2, landingText3);
+  loopTimeline2 = LoopText(landingText4, landingText5);
+
+  // FIX: When user scrolls back to top, restart the loop timelines from beginning
+  // Without this: chars are stuck mid-cycle (y:-80 or opacity:0) making text invisible
+  ScrollTrigger.create({
+    trigger: ".landing-section",
+    start: "top top",
+    end: "bottom top",
+    onLeaveBack: () => {
+      // Reset all char positions cleanly
+      gsap.set(
+        [
+          landingText2.chars,
+          landingText3.chars,
+          landingText4.chars,
+          landingText5.chars,
+        ],
+        { clearProps: "y,opacity,transform" }
+      );
+      // Restart loops from beginning so text is visible immediately
+      if (loopTimeline1) {
+        loopTimeline1.restart();
+      }
+      if (loopTimeline2) {
+        loopTimeline2.restart();
+      }
+      // Also restore h3 "Top Rated Plus" visibility
+      gsap.set(landingText.chars, { opacity: 1, y: 0, filter: "blur(0px)" });
+    },
+  });
 }
 
-function LoopText(Text1: SplitText, Text2: SplitText) {
+// FIX: Now returns the timeline so caller can restart it on scroll-back
+function LoopText(Text1: SplitText, Text2: SplitText): gsap.core.Timeline {
   var tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
   const delay = 4;
   const delay2 = delay * 2 + 1;
@@ -133,4 +169,7 @@ function LoopText(Text1: SplitText, Text2: SplitText) {
       },
       1
     );
+
+  // FIX: Return timeline reference
+  return tl;
 }
