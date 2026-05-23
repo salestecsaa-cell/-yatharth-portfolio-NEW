@@ -1,14 +1,21 @@
 import * as THREE from "three";
 import gsap from "gsap";
 
+// FIX: Module-level variable to store interval ID so it can be cleared properly
+let intensityInterval: ReturnType<typeof setInterval> | null = null;
+
 export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
   camera: THREE.PerspectiveCamera
 ) {
   let intensity: number = 0;
 
-  // FIX: Store interval ID and clear it when done — was leaking memory forever
-  const intensityInterval = setInterval(() => {
+  // FIX: Clear any existing interval before creating new one
+  // Original had no ID stored — leaked memory on every call (resize re-triggers this)
+  if (intensityInterval) {
+    clearInterval(intensityInterval);
+  }
+  intensityInterval = setInterval(() => {
     intensity = Math.random();
   }, 200);
 
@@ -19,7 +26,8 @@ export function setCharTimeline(
       end: "bottom top",
       scrub: true,
       invalidateOnRefresh: true,
-      // FIX: onLeaveBack resets landing text chars when user scrolls back to top
+      // FIX: Reset landing text chars when user scrolls back to top
+      // Without this: chars stuck at y:-80 or opacity:0 mid-cycle = invisible text
       onLeaveBack: () => {
         gsap.set(
           [
@@ -160,11 +168,7 @@ export function setCharTimeline(
       tM2.to(".what-box-in", { display: "flex", duration: 0.1, delay: 0 }, 0);
     }
   }
-
-  // FIX: Return cleanup function so interval gets cleared when component unmounts
-  return () => {
-    clearInterval(intensityInterval);
-  };
+  // FIX: No return statement — keeps original void return type so call sites don't break
 }
 
 export function setAllTimeline() {
