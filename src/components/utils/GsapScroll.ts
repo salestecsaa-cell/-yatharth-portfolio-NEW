@@ -6,9 +6,12 @@ export function setCharTimeline(
   camera: THREE.PerspectiveCamera
 ) {
   let intensity: number = 0;
-  setInterval(() => {
+
+  // FIX: Store interval ID and clear it when done — was leaking memory forever
+  const intensityInterval = setInterval(() => {
     intensity = Math.random();
   }, 200);
+
   const tl1 = gsap.timeline({
     scrollTrigger: {
       trigger: ".landing-section",
@@ -16,8 +19,21 @@ export function setCharTimeline(
       end: "bottom top",
       scrub: true,
       invalidateOnRefresh: true,
+      // FIX: onLeaveBack resets landing text chars when user scrolls back to top
+      onLeaveBack: () => {
+        gsap.set(
+          [
+            ".landing-h2-info .char",
+            ".landing-h2-info-1 .char",
+            ".landing-h2-1 .char",
+            ".landing-h2-2 .char",
+          ],
+          { clearProps: "all" }
+        );
+      },
     },
   });
+
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: ".about-section",
@@ -47,6 +63,7 @@ export function setCharTimeline(
       invalidateOnRefresh: true,
     },
   }).to(".character-model", { opacity: 0, pointerEvents: "none", duration: 1 }, 0);
+
   let screenLight: any, monitor: any;
   character?.children.forEach((object: any) => {
     if (object.name === "Plane004") {
@@ -71,7 +88,9 @@ export function setCharTimeline(
       screenLight = object;
     }
   });
+
   let neckBone = character?.getObjectByName("spine005");
+
   if (window.innerWidth > 1024) {
     if (character) {
       tl1
@@ -141,6 +160,11 @@ export function setCharTimeline(
       tM2.to(".what-box-in", { display: "flex", duration: 0.1, delay: 0 }, 0);
     }
   }
+
+  // FIX: Return cleanup function so interval gets cleared when component unmounts
+  return () => {
+    clearInterval(intensityInterval);
+  };
 }
 
 export function setAllTimeline() {
@@ -160,7 +184,6 @@ export function setAllTimeline() {
       { maxHeight: "100%", duration: 0.5 },
       0
     )
-
     .fromTo(
       ".career-timeline",
       { opacity: 0 },
