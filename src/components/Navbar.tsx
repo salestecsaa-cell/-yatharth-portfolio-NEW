@@ -14,8 +14,8 @@ const Navbar = () => {
     smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
+      smooth: 1.2,       // FIX: was 1.7 — high smooth caused scrub position mismatch on scroll-back
+      speed: 1,          // FIX: was 1.7 — speed >1 creates parallax that desynchronizes ScrollTrigger scrub
       effects: true,
       autoResize: true,
       ignoreMobileResize: true,
@@ -40,10 +40,18 @@ const Navbar = () => {
         }
       });
     });
-    window.addEventListener("resize", () => {
+
+    // FIX: Store resize handler ref so it can be properly cleaned up
+    const resizeHandler = () => {
       ScrollSmoother.refresh(true);
-    });
+    };
+    window.addEventListener("resize", resizeHandler);
+
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
   }, []);
+
   return (
     <>
       <div className="header">
