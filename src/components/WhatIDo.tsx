@@ -132,9 +132,9 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
             <div className="what-content-in">
               <h3>VIDEO EDITING</h3>
-              <h4>Performance-Driven Video Editing</h4>
+              <h4>Performance AI Video Ads</h4>
               <p>
-                I create scroll stopping videos, reels, ads, and AI-powered content, optimized for retention and performance that drives results.
+                I create AI UGC ads, direct-response Meta ads, reels and AI-powered video content, edited for hook strength, retention and paid-social performance.
               </p>
               <h5>Softwares & Tools</h5>
               <div className="what-content-flex">

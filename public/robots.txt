@@ -1,0 +1,5 @@
+# Search and AI search crawlers are welcome.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.yatharth114.com/sitemap.xml

@@ -9,7 +9,7 @@ const sections = [
         title: "Video Editing",
         category: "Video Editing Portfolio",
         tools: "Video Editing, Motion Graphics, Color Grading",
-        image: "/images/callhq.webp",
+        image: "/images/video-editing-portfolio.webp",
         link: "https://videoediting.yatharth114.com",
       },
     ],
@@ -21,7 +21,7 @@ const sections = [
         title: "Graphic Design",
         category: "Graphic Design Portfolio",
         tools: "Brand Identity, Social Media, Print Design",
-        image: "/images/whatsapp.webp",
+        image: "/images/graphic-design-portfolio.webp",
         link: "https://graphicdesign.yatharth114.com",
       },
     ],
@@ -59,7 +59,7 @@ const Work = () => {
                     <div className="item-image">
                       <WorkImage
                         image={item.image}
-                        alt={item.title}
+                        alt={`${item.category} by Yatharth Sharma`}
                         link={item.link}
                       />
                     </div>
