@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/video-editing/:path*",
+      "destination": "https://clip-creations-galore.vercel.app/:path*"
+    },
+    {
+      "source": "/graphic-design/:path*",
+      "destination": "https://visionary-design-showcase.vercel.app/:path*"
+    }
+  ]
+}
