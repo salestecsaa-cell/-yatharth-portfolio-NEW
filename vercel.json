@@ -1,12 +1,28 @@
 {
   "rewrites": [
     {
-      "source": "/video-editing/:path*",
-      "destination": "https://clip-creations-galore.vercel.app/:path*"
+      "source": "/video-editing",
+      "destination": "https://clip-creations-galore.vercel.app/"
     },
     {
-      "source": "/graphic-design/:path*",
-      "destination": "https://visionary-design-showcase.vercel.app/:path*"
+      "source": "/video-editing/",
+      "destination": "https://clip-creations-galore.vercel.app/"
+    },
+    {
+      "source": "/video-editing/:path+",
+      "destination": "https://clip-creations-galore.vercel.app/:path+"
+    },
+    {
+      "source": "/graphic-design",
+      "destination": "https://visionary-design-showcase.vercel.app/"
+    },
+    {
+      "source": "/graphic-design/",
+      "destination": "https://visionary-design-showcase.vercel.app/"
+    },
+    {
+      "source": "/graphic-design/:path+",
+      "destination": "https://visionary-design-showcase.vercel.app/:path+"
     }
   ]
 }
