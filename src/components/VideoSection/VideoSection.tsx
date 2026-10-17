@@ -1,8 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./VideoSection.css";
+
+const VIDEO_ID = "hb6hoPJdh6g";
 
 const VideoSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,17 +35,40 @@ const VideoSection = () => {
         </div>
 
         <div className="video-wrapper">
-          <iframe
-            width="100%"
-            height="600"
-            src="https://www.youtube.com/embed/hb6hoPJdh6g"
-            title="How Yatharth Sharma helps clients — introduction video"
-            loading="lazy"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="video-iframe"
-          ></iframe>
+          {playing ? (
+            <iframe
+              width="100%"
+              height="600"
+              src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1`}
+              title="How Yatharth Sharma helps clients — introduction video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="video-iframe"
+            ></iframe>
+          ) : (
+            // Thumbnail first; the ~850 KB YouTube player only loads on click.
+            <a
+              href={`https://www.youtube.com/watch?v=${VIDEO_ID}`}
+              className="video-iframe video-facade"
+              aria-label="Play: How Yatharth Sharma helps clients — introduction video"
+              data-cursor="disable"
+              onClick={(e) => {
+                e.preventDefault();
+                setPlaying(true);
+              }}
+            >
+              <img
+                src={`https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
+                onError={(e) => {
+                  e.currentTarget.src = `https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`;
+                }}
+                alt="How Yatharth Sharma helps clients — introduction video"
+                loading="lazy"
+              />
+              <span className="video-play" aria-hidden="true" />
+            </a>
+          )}
         </div>
       </div>
     </section>

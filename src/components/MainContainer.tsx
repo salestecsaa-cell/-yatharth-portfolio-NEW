@@ -1,4 +1,4 @@
-import { lazy, PropsWithChildren, Suspense, useEffect, useState } from "react";
+import { lazy, PropsWithChildren, Suspense, useEffect, useRef, useState } from "react";
 import About from "./About";
 import Contact from "./Contact";
 import Cursor from "./Cursor";
@@ -46,9 +46,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
               <VideoSection />
             </Suspense>
 
-            <Suspense fallback={<div>Loading....</div>}>
-              <TechStack />
-            </Suspense>
+            <TechStackWhenNear />
 
             <Work />
 
@@ -57,6 +55,44 @@ const MainContainer = ({ children }: PropsWithChildren) => {
         </div>
       </div>
     </div>
+  );
+};
+
+// The 3D tools section pulls in ~730 KB of physics code. Load it only when the
+// visitor scrolls near it; until then show the same heading and box so the
+// page height (and the GSAP scroll positions) stay the same.
+const TechStackWhenNear = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [near, setNear] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNear(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "800px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const placeholder = (
+    <div className="techstack" ref={ref}>
+      <h2>Softwares <span className="tech-accent">&</span> Tools I Use</h2>
+      <div className="tech-canvas" />
+    </div>
+  );
+
+  if (!near) return placeholder;
+  return (
+    <Suspense fallback={placeholder}>
+      <TechStack />
+    </Suspense>
   );
 };
 
