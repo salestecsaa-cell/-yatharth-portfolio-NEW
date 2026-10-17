@@ -46,17 +46,33 @@
   padding: 6px;
   position: relative;
   border-radius: 100px;
-  background-color: #000;
-  overflow: hidden;
   box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10;
-  transition: min-width 0.6s cubic-bezier(0.33, 0.11, 1, 0.72),
-              min-height 0.6s cubic-bezier(0.33, 0.11, 1, 0.72),
-              border-radius 0.6s cubic-bezier(0.33, 0.11, 1, 0.72),
-              box-shadow 0.4s ease;
+  transition: box-shadow 0.4s ease;
+}
+
+/* The black pill is drawn by this layer so the fill-on-complete can use a
+   transform (no layout shift) instead of growing the element's size. Like
+   the original min-width change, the fill is instant (no transition). */
+.loading-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  background-color: #000;
+  transform-origin: center;
+}
+
+/* clips the cursor glow to the pill shape */
+.loading-hover-clip {
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 /* glow blob that follows cursor */
@@ -85,10 +101,11 @@
 
 /* pill expand on complete */
 .loading-clicked {
-  min-width: calc(100vw + 5000px) !important;
-  min-height: calc(100vh + 500px) !important;
-  border-radius: 5000px !important;
   box-shadow: none !important;
+}
+
+.loading-clicked::before {
+  transform: scale(30, 20);
 }
 
 /* ─── PILL BUTTON INNER ───────────────────────────────── */

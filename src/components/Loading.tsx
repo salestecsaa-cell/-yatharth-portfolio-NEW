@@ -134,7 +134,9 @@ const Loading = ({ percent }: { percent: number }) => {
           onMouseMove={(e) => handleMouseMove(e)}
         >
 
-          <div className="loading-hover"></div>
+          <div className="loading-hover-clip">
+            <div className="loading-hover"></div>
+          </div>
 
           <div className="loading-button">
 
