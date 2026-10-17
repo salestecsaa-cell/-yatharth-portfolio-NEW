@@ -88,7 +88,7 @@ const Loading = ({ percent }: { percent: number }) => {
 
         <a href="/#" className="loader-title" data-cursor="disable">
 
-          <img src="/images/yatharth-profile.webp" className="loader-profile-img" />
+          <img src="/images/yatharth-profile.webp" className="loader-profile-img" alt="Yatharth Sharma" />
 
         </a>
 
@@ -120,9 +120,9 @@ const Loading = ({ percent }: { percent: number }) => {
 
           <Marquee>
 
-            <span> Graphic Designer</span> <span>Video Editor</span>
+            <span> AI Video Editor</span> <span>Graphic Designer</span>
 
-            <span> Graphic Designer</span> <span>Video Editor</span>
+            <span> AI Video Editor</span> <span>Graphic Designer</span>
 
           </Marquee>
 

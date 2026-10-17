@@ -67,7 +67,7 @@ const Contact = () => {
             <h2>
               <span>Yatharth Sharma</span>
             </h2>
-            <h5>Graphic Designer & Video Editor</h5>
+            <h5>Performance AI Video Editor & Graphic Designer</h5>
             <h5>
               <MdCopyright /> 2026 — Yatharth Sharma
             </h5>

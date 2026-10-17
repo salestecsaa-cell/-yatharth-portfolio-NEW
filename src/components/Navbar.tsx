@@ -56,7 +56,7 @@ const Navbar = () => {
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          <img src="/images/yatharth-profile.webp" alt="Yatharth" className="navbar-logo" />
+          <img src="/images/yatharth-profile.webp" alt="Yatharth Sharma" className="navbar-logo" />
         </a>
         <a
           href="https://www.upwork.com/freelancers/yatharth114/"
