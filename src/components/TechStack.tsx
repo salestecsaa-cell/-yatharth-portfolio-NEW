@@ -10,41 +10,18 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 
-// The tools Yatharth actually uses (see WhatIDo), drawn as text labels so the
-// spheres match the services instead of showing web-development logos.
-const toolLabels = [
-  ["Premiere", "Pro"],
-  ["After", "Effects"],
-  ["Photoshop"],
-  ["Illustrator"],
-  ["CapCut"],
-  ["Higgsfield"],
-  ["Kling"],
-  ["HeyGen"],
+const textureLoader = new THREE.TextureLoader();
+const imageUrls = [
+  "/images/react2.webp",
+  "/images/next2.webp",
+  "/images/node2.webp",
+  "/images/express.webp",
+  "/images/mongo.webp",
+  "/images/mysql.webp",
+  "/images/typescript.webp",
+  "/images/javascript.webp",
 ];
-
-const labelColors = ["#5eead4", "#a78bfa", "#f472b6", "#60a5fa"];
-
-const makeLabelTexture = (lines: string[], index: number) => {
-  const canvas = document.createElement("canvas");
-  canvas.width = 1024;
-  canvas.height = 512;
-  const ctx = canvas.getContext("2d")!;
-  ctx.fillStyle = labelColors[index % labelColors.length];
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#0a0e17";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.font = "700 110px Geist, sans-serif";
-  const lineHeight = 115;
-  const top = canvas.height / 2 - ((lines.length - 1) * lineHeight) / 2;
-  lines.forEach((line, i) => ctx.fillText(line, canvas.width / 2, top + i * lineHeight));
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.colorSpace = THREE.SRGBColorSpace;
-  return texture;
-};
-
-const textures = toolLabels.map(makeLabelTexture);
+const textures = imageUrls.map((url) => textureLoader.load(url));
 
 const sphereGeometry = new THREE.SphereGeometry(
   1,
