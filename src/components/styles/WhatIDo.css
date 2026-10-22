@@ -394,3 +394,10 @@
     line-height: 6.8rem;
   }
 }
+/* inline link to the AI UGC ads service page */
+.what-link {
+  color: var(--accentColor);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  pointer-events: auto;
+}
