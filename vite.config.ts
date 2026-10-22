@@ -6,6 +6,11 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
+      // Static service pages are separate HTML entries (no 3D bundle).
+      input: {
+        main: "index.html",
+        aiUgcAds: "services/ai-ugc-ads/index.html",
+      },
       output: {
         manualChunks: {
           "vendor-react": ["react", "react-dom"],
