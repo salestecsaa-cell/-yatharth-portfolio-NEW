@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         main: "index.html",
         aiUgcAds: "services/ai-ugc-ads/index.html",
+        performanceVideoAds: "services/performance-video-ads/index.html",
       },
       output: {
         manualChunks: {

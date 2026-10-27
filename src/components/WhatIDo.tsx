@@ -138,7 +138,11 @@ const WhatIDo = () => {
                 <a href="/services/ai-ugc-ads/" className="what-link" data-cursor="disable">
                   AI UGC ads
                 </a>
-                , direct-response Meta ads, reels and AI-powered video content, edited for hook strength, retention and paid-social performance.
+                ,{" "}
+                <a href="/services/performance-video-ads/" className="what-link" data-cursor="disable">
+                  direct-response Meta ads
+                </a>
+                , reels and AI-powered video content, edited for hook strength, retention and paid-social performance.
               </p>
               <h5>Softwares & Tools</h5>
               <div className="what-content-flex">
