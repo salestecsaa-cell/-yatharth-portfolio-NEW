@@ -4,6 +4,7 @@ import Contact from "./Contact";
 import Cursor from "./Cursor";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
+import Reviews from "./Reviews";
 import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
@@ -49,6 +50,8 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <TechStackWhenNear />
 
             <Work />
+
+            <Reviews />
 
             <Contact />
           </div>

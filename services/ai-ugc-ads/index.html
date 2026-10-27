@@ -138,6 +138,12 @@
     .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; padding: 0; list-style: none; }
     .tags li { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; color: var(--muted); }
 
+    .reviews figure { margin: 0; }
+    .reviews blockquote { margin: 0 0 14px; color: var(--text); font-size: 16px; }
+    .reviews .stars { color: var(--accent); letter-spacing: 2px; margin-bottom: 10px; }
+    .reviews figcaption { font-size: 14px; color: var(--muted); }
+    .reviews figcaption strong { color: var(--text); font-weight: 600; }
+
     details { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin-top: 12px; }
     summary { cursor: pointer; font-weight: 600; }
     details p { color: var(--muted); margin: 10px 0 0; }
@@ -256,6 +262,19 @@
           <li>Higgsfield</li><li>Kling</li><li>Veo</li><li>HeyGen</li><li>Sora</li><li>ElevenLabs</li>
           <li>Adobe Premiere Pro</li><li>Adobe After Effects</li><li>CapCut</li><li>Photoshop</li>
         </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="reviews">
+      <div class="wrap">
+        <h2 id="reviews">What clients say</h2>
+        <p>5.0 from 45 reviews on Upwork, with a 100% Job Success Score.</p>
+        <div class="grid reviews">
+          <figure class="card"><div class="stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>&ldquo;Great work, he became one of our top 10 editors!&rdquo;</blockquote><figcaption><strong>Simon B.</strong> &middot; Performance Video Editor for a fast-growing DTC brand, Oct 2026</figcaption></figure>
+          <figure class="card"><div class="stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>&ldquo;Yatharth is a very creative expert at video design. It is such a pleasure to work with him. Very kind and responsive. We highly recommend Yath. Everything he has delivered has been fantastic.&rdquo;</blockquote><figcaption>AI Video Creator / Motion Graphics Editor contract, Aug 2026</figcaption></figure>
+          <figure class="card"><div class="stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>&ldquo;I would give a million stars if I could! Yatharth helped me with a very tight deadline- he followed all my instructions, edits, and was so pleasant to deal with. Will hire again!&rdquo;</blockquote><figcaption><strong>Mira Z.</strong> &middot; Instagram Reel editor, Nov 2023</figcaption></figure>
+        </div>
+        <p class="more"><a href="https://www.upwork.com/freelancers/yatharth114/" target="_blank" rel="noopener">Read all reviews on Upwork</a></p>
       </div>
     </section>
 

@@ -1,0 +1,113 @@
+/* ── Reviews Section ── */
+.reviews-section {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+  background-color: var(--backgroundColor);
+  padding: 40px 0 120px 0;
+}
+
+.reviews-section h2 {
+  font-size: 70px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.reviews-section h2 > span {
+  color: var(--accentColor);
+}
+
+.reviews-container {
+  margin: auto;
+}
+
+.reviews-summary {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+  opacity: 0.75;
+  margin: 0 0 50px;
+}
+
+/* ── Review Cards ── */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.review-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(94, 234, 212, 0.18);
+}
+
+.review-stars {
+  color: var(--accentColor);
+  letter-spacing: 3px;
+  font-size: 16px;
+}
+
+.review-card blockquote {
+  margin: 0;
+  flex: 1;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.review-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 14px;
+}
+
+.review-card figcaption strong {
+  font-weight: 500;
+}
+
+.review-card figcaption span {
+  opacity: 0.6;
+}
+
+.reviews-more {
+  display: table;
+  margin: 40px auto 0;
+  color: var(--accentColor);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 16px;
+}
+
+/* ── Responsive Design ── */
+@media only screen and (max-width: 1024px) {
+  .reviews-section h2 {
+    font-size: 50px;
+  }
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .reviews-section h2 {
+    font-size: 40px;
+  }
+  .reviews-summary {
+    font-size: 16px;
+  }
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+  .review-card {
+    padding: 22px;
+  }
+}
