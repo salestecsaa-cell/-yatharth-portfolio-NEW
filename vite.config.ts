@@ -11,6 +11,7 @@ export default defineConfig({
         main: "index.html",
         aiUgcAds: "services/ai-ugc-ads/index.html",
         performanceVideoAds: "services/performance-video-ads/index.html",
+        aiUgcAdsCost: "insights/ai-ugc-ads-cost/index.html",
       },
       output: {
         manualChunks: {
