@@ -52,7 +52,7 @@ const SocialIcons = () => {
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
           <a
-            href="https://www.upwork.com/freelancers/~011f837a11249f47be"
+            href="https://www.upwork.com/freelancers/yatharth114/"
             target="_blank"
             rel="noreferrer"
             title="Upwork"
